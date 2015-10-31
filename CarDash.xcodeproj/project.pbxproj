@@ -148,19 +148,16 @@
 		6F468FCE1971BA5B00D10FD2 /* CarDash */ = {
 			isa = PBXGroup;
 			children = (
+				C30177341BE539D500D943AB /* UI */,
 				6F2261CA1B3EFB450007EAE1 /* Fonts */,
-				6F468FFC1971BB4C00D10FD2 /* FAOBD2Communicator.h */,
-				6F468FFD1971BB4C00D10FD2 /* FAOBD2Communicator.m */,
 				6F468FD71971BA5B00D10FD2 /* FAAppDelegate.h */,
 				6F468FD81971BA5B00D10FD2 /* FAAppDelegate.m */,
+				6F468FFC1971BB4C00D10FD2 /* FAOBD2Communicator.h */,
+				6F468FFD1971BB4C00D10FD2 /* FAOBD2Communicator.m */,
 				6F468FF91971BAD300D10FD2 /* FADashboardViewController.h */,
 				6F468FFA1971BAD300D10FD2 /* FADashboardViewController.m */,
 				6FA52D121971F4AC001E473E /* FASettingsViewController.h */,
 				6FA52D131971F4AC001E473E /* FASettingsViewController.m */,
-				6F468FF71971BA7700D10FD2 /* MainInterface.storyboard */,
-				6F2261C21B3E13170007EAE1 /* FAHorizontalMeterViewController.h */,
-				6F2261C31B3E13170007EAE1 /* FAHorizontalMeterViewController.m */,
-				6F2261C51B3E17A80007EAE1 /* FAHorizontalMeterViewController.xib */,
 				6F2261C71B3E42050007EAE1 /* FAHorizontalMeterView.h */,
 				6F2261C81B3E42050007EAE1 /* FAHorizontalMeterView.m */,
 				6F468FDA1971BA5B00D10FD2 /* Images.xcassets */,
@@ -196,6 +193,17 @@
 				6F468FEA1971BA5C00D10FD2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C30177341BE539D500D943AB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6F468FF71971BA7700D10FD2 /* MainInterface.storyboard */,
+				6F2261C21B3E13170007EAE1 /* FAHorizontalMeterViewController.h */,
+				6F2261C31B3E13170007EAE1 /* FAHorizontalMeterViewController.m */,
+				6F2261C51B3E17A80007EAE1 /* FAHorizontalMeterViewController.xib */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

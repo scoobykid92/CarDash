@@ -61,32 +61,10 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)startDemo:(id)sender
-{
-    self.statusLabel.text = @"Starting Demo";
-    [[FAOBD2Communicator sharedInstance] startDemo];
-}
-
-- (IBAction)stopDemo:(id)sender
-{
-    [[FAOBD2Communicator sharedInstance] stopDemo];
-    self.statusLabel.text = @"Stopped Demo";
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewWillDisappear:animated];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
