@@ -571,7 +571,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4F-2O-6kI">
-                                <rect key="frame" x="20" y="20" width="560" height="20.5"/>
+                                <rect key="frame" x="20" y="20" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -592,20 +592,56 @@
                                     <action selector="start:" destination="Bco-wM-nyw" eventType="touchUpInside" id="Mo9-Wb-40i"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e70-GK-zYU">
+                                <rect key="frame" x="180" y="141" width="105" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="mkh-YZ-fiC"/>
+                                    <constraint firstAttribute="width" constant="105" id="ob0-xT-wr3"/>
+                                </constraints>
+                                <state key="normal" title="Stop Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="20" width="77" height="44"/>
+                                </variation>
+                                <connections>
+                                    <action selector="stopDemo:" destination="Bco-wM-nyw" eventType="touchUpInside" id="aaL-5N-MkJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3A-im-GC6">
+                                <rect key="frame" x="180" y="89" width="105" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Kea-1g-XC4"/>
+                                    <constraint firstAttribute="width" constant="105" id="XGB-Ad-qaZ"/>
+                                </constraints>
+                                <state key="normal" title="Start Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="20" width="77" height="44"/>
+                                </variation>
+                                <connections>
+                                    <action selector="startDemo:" destination="Bco-wM-nyw" eventType="touchUpInside" id="hrZ-tI-UEQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UDQ-Ti-teT" firstAttribute="top" secondItem="OuH-3E-ISb" secondAttribute="bottom" constant="8" id="0fs-N7-ClZ"/>
+                            <constraint firstItem="e70-GK-zYU" firstAttribute="centerX" secondItem="Z3A-im-GC6" secondAttribute="centerX" id="8XM-aB-LiI"/>
                             <constraint firstItem="OuH-3E-ISb" firstAttribute="leading" secondItem="2P7-dD-XvT" secondAttribute="leadingMargin" constant="4" id="Gdr-Yh-CpY"/>
                             <constraint firstItem="EZa-Ot-GN8" firstAttribute="top" secondItem="Z4F-2O-6kI" secondAttribute="bottom" constant="8" id="JZr-aB-1i2"/>
                             <constraint firstItem="Z4F-2O-6kI" firstAttribute="trailing" secondItem="2P7-dD-XvT" secondAttribute="trailingMargin" id="PSQ-M7-LHM"/>
                             <constraint firstItem="EZa-Ot-GN8" firstAttribute="leading" secondItem="2P7-dD-XvT" secondAttribute="leadingMargin" constant="4" id="buW-1F-BsT"/>
+                            <constraint firstItem="NDc-J6-rsv" firstAttribute="top" secondItem="e70-GK-zYU" secondAttribute="bottom" constant="415" id="dXD-x4-erD"/>
                             <constraint firstItem="nK7-2I-g8Y" firstAttribute="leading" secondItem="2P7-dD-XvT" secondAttribute="leadingMargin" constant="4" id="duZ-AF-TXb"/>
+                            <constraint firstItem="e70-GK-zYU" firstAttribute="leading" secondItem="OuH-3E-ISb" secondAttribute="trailing" constant="79" id="hsX-M6-umH"/>
                             <constraint firstItem="Z4F-2O-6kI" firstAttribute="top" secondItem="KHn-ML-2NX" secondAttribute="bottom" id="nHg-Hv-7Zt"/>
                             <constraint firstItem="OuH-3E-ISb" firstAttribute="top" secondItem="nK7-2I-g8Y" secondAttribute="bottom" constant="8" id="pSe-UP-1e0"/>
                             <constraint firstItem="Z4F-2O-6kI" firstAttribute="leading" secondItem="2P7-dD-XvT" secondAttribute="leadingMargin" id="uJP-BT-sOM"/>
                             <constraint firstItem="nK7-2I-g8Y" firstAttribute="top" secondItem="EZa-Ot-GN8" secondAttribute="bottom" constant="8" id="wlM-hz-lHN"/>
                             <constraint firstItem="UDQ-Ti-teT" firstAttribute="leading" secondItem="2P7-dD-XvT" secondAttribute="leadingMargin" constant="24" id="z00-rA-FSS"/>
+                            <constraint firstItem="e70-GK-zYU" firstAttribute="top" secondItem="Z3A-im-GC6" secondAttribute="bottom" constant="8" symbolic="YES" id="zJO-C7-CJr"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="xuF-Pj-BG1"/>

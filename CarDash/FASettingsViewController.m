@@ -60,6 +60,17 @@
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)startDemo:(id)sender
+{
+  self.statusLabel.text = @"Starting Demo";
+  [[FAOBD2Communicator sharedInstance] startDemo];
+}
+
+- (IBAction)stopDemo:(id)sender
+{
+  [[FAOBD2Communicator sharedInstance] stopDemo];
+  self.statusLabel.text = @"Stopped Demo";
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {

@@ -254,8 +254,6 @@ NSString *const kFAOBD2PIDExhaustPressure          = @"73";
 
 - (void)parseResponse:(NSString *)response
 {
-  DLog(@"Response: %@",response);
-  
   if ([response isEqualToString:@">"]) {
     self.readyToSend = YES;
     DLog(@"ReadToSend = YES");
@@ -338,6 +336,123 @@ NSString *const kFAOBD2PIDExhaustPressure          = @"73";
   }
 }
 
+#pragma mark Demo
+
+- (void)startDemo
+{
+  [self stop];
+  
+  [self.demoTimer invalidate];
+  
+  self.demoTimer = [NSTimer timerWithTimeInterval:0.25 target:self selector:@selector(fireDemoPID) userInfo:nil repeats:YES];
+  
+  [[NSRunLoop currentRunLoop] addTimer:self.demoTimer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)stopDemo
+{
+  [self.demoTimer invalidate];
+}
+
+- (NSInteger)randomIntegerBetweenLow:(NSInteger)low high:(NSInteger)high
+{
+  NSInteger n = low + (arc4random() % (high - low));
+  
+  return n;
+}
+
+- (CGFloat)randomFloatBetweenLow:(CGFloat)low high:(CGFloat)high
+{
+  NSInteger highI = (NSInteger)(high * 100);
+  NSInteger lowI  = (NSInteger)(low * 100);
+  
+  CGFloat n = ((lowI) + (arc4random() % (highI - lowI))) / 100.0;
+  
+  return n;
+}
+
+- (NSInteger)randomIntegerBetweenLow:(NSInteger)low high:(NSInteger)high withinPercent:(NSInteger)percent of:(NSInteger)value
+{
+  NSInteger pLow  = value - ( value * (percent / 100.0 ) );
+  NSInteger pHigh = value + ( value * (percent / 100.0 ) );
+  
+  if (pLow < low) {
+    pLow = low;
+  }
+  
+  if(pHigh > high) {
+    pHigh = high;
+  }
+  
+  return [self randomIntegerBetweenLow:pLow high:pHigh];
+}
+
+- (CGFloat)randomFloatBetweenLow:(NSInteger)low high:(NSInteger)high withinPercent:(NSInteger)percent of:(CGFloat)value
+{
+  CGFloat pLow  = value - ( value * (percent / 100.0 ) );
+  CGFloat pHigh = value + ( value * (percent / 100.0 ) );
+  
+  if (pLow < low) {
+    pLow = low;
+  }
+  
+  if(pHigh > high) {
+    pHigh = high;
+  }
+  
+  return [self randomFloatBetweenLow:pLow high:pHigh];
+}
+
+- (void)fireDemoPID
+{
+  // DEBUG_NSLOG_FUNCTION_CALL
+  
+  NSInteger index = arc4random() % self.sensorPIDsToScan.count;
+  
+  NSString *responseSensorID = self.sensorPIDsToScan[index];
+  
+  if ([responseSensorID isEqualToString:kFAOBD2PIDMassAirFlow]) {
+    CGFloat maf = [self randomFloatBetweenLow:20 high:30];
+    CGFloat gph = [self randomFloatBetweenLow:0.5 high:3.0];
+    [self postNotificationWithSensor:kFAOBD2PIDMassAirFlow WithValue:maf];
+    [self postNotificationWithSensor:kFAOBD2PIDFuelFlow WithValue:gph];
+    
+  }else if ([responseSensorID isEqualToString:kFAOBD2PIDVehicleSpeed] ) {
+    CGFloat mph = [self randomIntegerBetweenLow:40 high:55];
+    [self postNotificationWithSensor:kFAOBD2PIDVehicleSpeed WithValue:mph];
+    
+  }else if ([responseSensorID isEqualToString:kFAOBD2PIDEngineCoolantTemperature] ) {
+    CGFloat c = [self randomIntegerBetweenLow:60 high:125];
+    CGFloat f = [self ctof:c];
+    [self postNotificationWithSensor:kFAOBD2PIDEngineCoolantTemperature WithValue:f];
+    
+  }else if ([responseSensorID isEqualToString:kFAOBD2PIDAmbientAirTemperature] ) {
+    CGFloat c = [self randomIntegerBetweenLow:20 high:50];
+    CGFloat f = [self ctof:c];
+    //DLog( @"Ambient Temp (F): %0.1f ", f );
+    [self postNotificationWithSensor:kFAOBD2PIDAmbientAirTemperature WithValue:f];
+    
+  }else if ([responseSensorID isEqualToString:kFAOBD2PIDAirIntakeTemperature] ) {
+    CGFloat c = [self randomIntegerBetweenLow:20 high:90];
+    CGFloat f = [self ctof:c];
+    //DLog( @"Intake Temp (F): %0.1f ", f );
+    [self postNotificationWithSensor:kFAOBD2PIDAirIntakeTemperature WithValue:f];
+    
+  }else if ([responseSensorID isEqualToString:kFAOBD2PIDControlModuleVoltage] ) {
+    CGFloat v = [self randomFloatBetweenLow:9.5 high:15.1];
+    //DLog( @"Control Module Voltage: %0.1f ", v );
+    [self postNotificationWithSensor:kFAOBD2PIDControlModuleVoltage WithValue:v];
+    
+  }else if ([responseSensorID isEqualToString:kFAOBD2PIDVehicleFuelLevel] ) {
+    CGFloat fl = [self randomIntegerBetweenLow:0 high:100];
+    //DLog( @"Fuel Level: %0.1f", fl );
+    [self postNotificationWithSensor:kFAOBD2PIDVehicleFuelLevel WithValue:fl];
+    
+  }
+  
+}
+
+#pragma mark - Private Helpers
 - (void)sendToOutputStream:(NSString *)message{
   NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
   [self.outputStream write:[data bytes] maxLength:[data length]];
